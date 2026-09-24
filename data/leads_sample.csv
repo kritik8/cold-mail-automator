@@ -1,0 +1,6 @@
+name,email,company,role,company_url,linkedin_url,job_url,notes
+Rahul Sharma,rahul@xyz.ai,XYZ AI,Founder,https://xyz.ai,,,Building AI coding agents and autonomous developer workflows
+Priya Mehta,priya.mehta@scaleinfra.io,ScaleInfra,Engineering Manager,https://scaleinfra.io,,,High-throughput distributed systems in Go and Kubernetes
+Alex Chen,alex@stackpulse.dev,StackPulse,CTO,,,,Modern web platforms and developer tooling in TypeScript and Python
+Ankit Verma,ankit@dataflow.tech,DataFlow,Lead AI Researcher,https://dataflow.tech,,,RAG and LLM evaluation benchmarks
+Siddharth Rao,siddharth@cloudmesh.com,CloudMesh,Director of Engineering,,,,Backend microservices and API gateways

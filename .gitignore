@@ -1,0 +1,14 @@
+.env
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+logs/
+output/
+data/send_history.json
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+env/
+venv/

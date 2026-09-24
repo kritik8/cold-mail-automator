@@ -1,0 +1,20 @@
+{
+  "name": "Kritik Jain",
+  "phone": "+91 62603 16055",
+  "email": "jkritik8@gmail.com",
+  "education": {
+    "degree": "B.Tech in Computer Science and Engineering",
+    "institution": "IIIT Bhopal",
+    "year": "Undergraduate"
+  },
+  "links": {
+    "github": "https://github.com/kritik8",
+    "linkedin": "https://www.linkedin.com/in/kritik-jain-064350356/",
+    "portfolio": "https://kritikjain.in",
+    "codechef": "https://www.codechef.com/users/kriks_819",
+    "codeforces": "https://codeforces.com/profile/kriks",
+    "leetcode": "https://leetcode.com/u/kriks_819/"
+  },
+  "default_signature": "Best,\nKritik Jain\nB.Tech, IIIT Bhopal\njkritik8@gmail.com | Portfolio: https://kritikjain.in | GitHub: https://github.com/kritik8 | LinkedIn: https://www.linkedin.com/in/kritik-jain-064350356/",
+  "summary": "Software Engineering undergraduate at IIIT Bhopal with strong problem-solving skills (Codeforces, LeetCode, CodeChef) and practical project experience in AI/ML, backend engineering, distributed systems, and modern web application development."
+}

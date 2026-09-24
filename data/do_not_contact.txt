@@ -1,0 +1,4 @@
+# List emails here (one per line) that should NEVER be contacted.
+# Lines starting with '#' or empty lines are ignored.
+blocked_recruiter@example.com
+do_not_reply@spammer.org
