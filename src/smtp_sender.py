@@ -14,7 +14,7 @@ from datetime import datetime
 from typing import List, Optional, Tuple
 from src.config import AppConfig
 from src.models import EmailDraft
-from src.storage import record_send_event, save_drafts, load_send_history
+from src.storage import record_send_event, save_drafts, load_send_history, sync_trackers_on_send
 from src.logger import get_logger
 
 logger = get_logger()
@@ -282,6 +282,9 @@ def send_approved_batch(drafts: List[EmailDraft], config: AppConfig, limit: Opti
                     "message_id": msg_id,
                     "status": "SENT"
                 })
+
+                # Automatically update sent and pending CSV sheets
+                sync_trackers_on_send(config.data_dir, draft, now_str)
             else:
                 draft.status = "FAILED"
                 draft.error_message = err

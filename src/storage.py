@@ -132,3 +132,105 @@ def load_drafts(json_path: str, csv_path: Optional[str] = None) -> List[EmailDra
             logger.error(f"Failed to load drafts from CSV: {e}")
 
     return []
+
+
+def _append_row_to_csv(file_path: str, row: Dict[str, Any], fieldnames: List[str]) -> None:
+    """Helper to append a clean row to CSV, creating headers if the file is new."""
+    import csv
+    file_exists = os.path.exists(file_path) and os.path.getsize(file_path) > 0
+    with open(file_path, mode="a", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        if not file_exists:
+            writer.writeheader()
+        writer.writerow(row)
+
+
+def _remove_row_from_csv(file_path: str, email_lower: str) -> None:
+    """Helper to remove a sent email row from pending CSV sheets."""
+    if not os.path.exists(file_path):
+        return
+    import csv
+    rows = []
+    fieldnames = []
+    with open(file_path, mode="r", newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        fieldnames = reader.fieldnames or []
+        for r in reader:
+            target_email = r.get("Email") or r.get("Email address") or ""
+            if target_email.strip().lower() != email_lower:
+                rows.append(r)
+    with open(file_path, mode="w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def sync_trackers_on_send(
+    data_dir: str,
+    draft: EmailDraft,
+    now_str: str,
+    campaign_name: Optional[str] = None
+) -> None:
+    """Automatically update pending and sent CSV sheets when an email is sent."""
+    try:
+        clean_date = now_str.replace("T", " ")[:19]
+        email_lower = draft.email.strip().lower()
+
+        # 1. Determine campaign if not explicitly provided
+        if not campaign_name:
+            c_low = draft.company.lower()
+            e_low = draft.email.lower()
+            if any(x in c_low or x in e_low for x in [".co.uk", "uk", "adecco", "brook street", "castlefield", "barker ross", "acorn"]):
+                campaign_name = "UK Tech & Recruiting"
+            elif any(x in c_low or x in e_low for x in [".dev", ".io", ".us", "typify", "pond ai", "sidekick", "estuary", "krea"]):
+                campaign_name = "US Tech & AI"
+            else:
+                campaign_name = "India Founders & Tech"
+
+        # Determine target sent CSV
+        if "uk" in campaign_name.lower():
+            target_sent_file = os.path.join(data_dir, "sent_uk_campaign.csv")
+        elif "us" in campaign_name.lower():
+            target_sent_file = os.path.join(data_dir, "sent_us_campaign.csv")
+        else:
+            target_sent_file = os.path.join(data_dir, "sent_india_outreach.csv")
+
+        sent_row = {
+            "Name": draft.name,
+            "Company": draft.company,
+            "Email": draft.email,
+            "Role": draft.role,
+            "Subject": draft.subject,
+            "Resume": draft.selected_resume,
+            "Campaign": campaign_name,
+            "Status": "SENT",
+            "Date Sent": clean_date
+        }
+        sent_fields = ["Name", "Company", "Email", "Role", "Subject", "Resume", "Campaign", "Status", "Date Sent"]
+
+        # Append to target sent file and master sent_all_outreach.csv
+        _append_row_to_csv(target_sent_file, sent_row, sent_fields)
+        master_sent_file = os.path.join(data_dir, "sent_all_outreach.csv")
+        _append_row_to_csv(master_sent_file, sent_row, sent_fields)
+
+        # 2. Remove sent email from pending CSV files
+        for pending_fname in ["pending_india_founders.csv", "pending_all_outreach.csv"]:
+            pending_path = os.path.join(data_dir, pending_fname)
+            _remove_row_from_csv(pending_path, email_lower)
+
+        # 3. Update founder_outreach_tracker.csv if present
+        tracker_path = os.path.join(data_dir, "founder_outreach_tracker.csv")
+        if os.path.exists(tracker_path):
+            try:
+                df = pd.read_csv(tracker_path, dtype=str)
+                mask = df["Email address"].str.lower() == email_lower
+                if mask.any():
+                    df.loc[mask, "Status (Drafted / Approved / Sent / Replied / Follow-up needed)"] = "Sent"
+                    df.loc[mask, "Date sent"] = clean_date
+                    df.to_csv(tracker_path, index=False, encoding="utf-8")
+            except Exception as ex:
+                logger.error(f"Error updating tracker CSV: {ex}")
+
+        logger.info(f"Synchronized CSV trackers for {draft.email} (Status: SENT)")
+    except Exception as e:
+        logger.error(f"Failed to sync trackers for {draft.email}: {e}")

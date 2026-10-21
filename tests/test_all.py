@@ -138,3 +138,54 @@ def test_mime_message_attachment():
     assert msg["To"] == "Recipient <recipient@example.com>"
     assert msg["Subject"] == "Subject line"
     assert msg["Message-ID"] == msg_id
+
+
+def test_sync_trackers_on_send(tmp_path):
+    from src.storage import sync_trackers_on_send, _append_row_to_csv
+    import csv
+
+    data_dir = str(tmp_path)
+    pending_file = os.path.join(data_dir, "pending_india_founders.csv")
+    _append_row_to_csv(
+        pending_file,
+        {
+            "Name": "Founder",
+            "Company": "TestCo",
+            "Email": "founder@testco.in",
+            "Role": "SDE Intern",
+            "Subject": "Subject",
+            "Resume": "resume_1.pdf",
+            "Campaign": "India Founders Outreach",
+            "Status": "DRAFTED",
+            "Date Created": "2026-10-21"
+        },
+        ["Name", "Company", "Email", "Role", "Subject", "Resume", "Campaign", "Status", "Date Created"]
+    )
+
+    draft = EmailDraft(
+        email="founder@testco.in",
+        name="Founder",
+        company="TestCo",
+        role="SDE Intern",
+        subject="Subject",
+        body="Body",
+        selected_resume="resume_1.pdf",
+        resume_reason="test",
+        status="SENT"
+    )
+
+    sync_trackers_on_send(data_dir, draft, "2026-10-21T20:00:00")
+
+    # Verify sent files created
+    sent_india_file = os.path.join(data_dir, "sent_india_outreach.csv")
+    assert os.path.exists(sent_india_file)
+    with open(sent_india_file, "r", encoding="utf-8") as f:
+        content = f.read()
+        assert "founder@testco.in" in content
+        assert "SENT" in content
+
+    # Verify removed from pending
+    with open(pending_file, "r", encoding="utf-8") as f:
+        pending_content = f.read()
+        assert "founder@testco.in" not in pending_content
+
