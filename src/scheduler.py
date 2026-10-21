@@ -3,6 +3,7 @@ import os
 import sys
 import time
 from datetime import datetime
+from typing import Optional
 from src.config import load_config
 from src.storage import load_drafts
 from src.smtp_sender import send_approved_batch
@@ -19,7 +20,7 @@ BOLD = "\033[1m"
 RESET = "\033[0m"
 
 
-def run_scheduled_job(target_time_str: str = "2026-09-25 09:30:00") -> None:
+def run_scheduled_job(target_time_str: str = "2026-09-25 09:30:00", limit: Optional[int] = None) -> None:
     """Wait until target_time and automatically dispatch approved emails."""
     config = load_config()
     
@@ -30,10 +31,12 @@ def run_scheduled_job(target_time_str: str = "2026-09-25 09:30:00") -> None:
     diff_seconds = (target_dt - now).total_seconds()
     
     print(f"\n{CYAN}============================================================{RESET}")
-    print(f"  {BOLD}COLD MAIL AUTOMATOR — SCHEDULED SEND DISPATCHER{RESET}")
+    print(f"  {BOLD}COLD MAIL AUTOMATOR - SCHEDULED SEND DISPATCHER{RESET}")
     print(f"{CYAN}============================================================{RESET}")
     print(f"Scheduled Execution Time: {BOLD}{target_dt.strftime('%A, %d %B %Y at %I:%M %p')}{RESET}")
     print(f"Current Local Time:       {now.strftime('%A, %d %B %Y at %I:%M %p')}")
+    if limit:
+        print(f"Batch Limit:              {BOLD}{limit} emails{RESET}")
 
     if diff_seconds > 0:
         hours = int(diff_seconds // 3600)
@@ -57,4 +60,4 @@ def run_scheduled_job(target_time_str: str = "2026-09-25 09:30:00") -> None:
 
     # Load approved drafts and send
     drafts = load_drafts(config.output_json_path, config.output_csv_path)
-    send_approved_batch(drafts, config)
+    send_approved_batch(drafts, config, limit=limit)

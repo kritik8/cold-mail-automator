@@ -58,8 +58,8 @@ def clean_html_text(html_content: str, max_chars: int = 1500) -> str:
         return ""
 
 
-def fetch_public_url(url: str, timeout: int = 6) -> Optional[str]:
-    """Fetch public page content safely with strict timeout."""
+def fetch_public_url(url: str, timeout: int = 3) -> Optional[str]:
+    """Fetch public page content safely with strict short timeout."""
     if not url or not isinstance(url, str):
         return None
     

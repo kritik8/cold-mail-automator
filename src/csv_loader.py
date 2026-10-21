@@ -76,6 +76,52 @@ def load_leads_file(
     mandatory = ["name", "email", "company"]
     missing_mandatory = [col for col in mandatory if col not in df.columns]
     if missing_mandatory:
+        # Check if the file was headerless (e.g. data/new_mail_list.xlsx)
+        try:
+            if ext in [".xlsx", ".xls"]:
+                df_raw = pd.read_excel(file_path, header=None, dtype=str)
+            else:
+                df_raw = pd.read_csv(file_path, header=None, dtype=str)
+            
+            # Check if column 1 contains emails
+            if df_raw.shape[1] >= 2 and any(is_valid_email(str(val)) for val in df_raw.iloc[:, 1].dropna().head(5)):
+                mapped_rows = []
+                for _, r in df_raw.iterrows():
+                    comp = str(r[0]).strip() if pd.notna(r[0]) else ""
+                    em = str(r[1]).strip().lower() if pd.notna(r[1]) else ""
+                    job_desc = str(r[2]).strip() if df_raw.shape[1] > 2 and pd.notna(r[2]) else ""
+                    loc = str(r[3]).strip() if df_raw.shape[1] > 3 and pd.notna(r[3]) else ""
+                    
+                    contact_raw = str(r[7]).strip() if df_raw.shape[1] > 7 and pd.notna(r[7]) else ""
+                    name = contact_raw
+                    role = "Engineering / Leadership"
+                    for sep in [chr(183), "•", "-", "|"]:
+                        if sep in contact_raw:
+                            parts = contact_raw.split(sep)
+                            name = parts[0].strip()
+                            role = parts[1].strip()
+                            break
+                    
+                    notes = f"Roles: {job_desc}"
+                    if loc:
+                        notes += f" | Location: {loc}"
+
+                    mapped_rows.append({
+                        "name": name or comp,
+                        "email": em,
+                        "company": comp,
+                        "role": role,
+                        "company_url": "",
+                        "linkedin_url": "",
+                        "job_url": "",
+                        "notes": notes
+                    })
+                df = pd.DataFrame(mapped_rows)
+                missing_mandatory = []
+        except Exception as e:
+            logger.warning(f"Headerless auto-detection failed: {e}")
+
+    if missing_mandatory:
         raise ValueError(f"Missing mandatory column(s) in {file_path}: {', '.join(missing_mandatory)}. Found columns: {list(df.columns)}")
 
     leads: List[Lead] = []

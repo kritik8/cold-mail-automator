@@ -1,5 +1,7 @@
 """SMTP email sender with TLS, attachments, conservative rate limiting, and duplicate safety."""
 import os
+import re
+import html
 import smtplib
 import time
 import random
@@ -23,6 +25,7 @@ GREEN = "\033[92m"
 YELLOW = "\033[93m"
 RED = "\033[91m"
 BOLD = "\033[1m"
+DIM = "\033[2m"
 RESET = "\033[0m"
 
 
@@ -36,8 +39,8 @@ def build_mime_message(
     attachment_path: Optional[str] = None,
     attachment_display_name: str = "Kritik_Jain_Resume.pdf"
 ) -> Tuple[MIMEMultipart, str]:
-    """Build a multi-part MIME email message with optional resume PDF attachment."""
-    msg = MIMEMultipart()
+    """Build a multi-part MIME email message with optional resume PDF attachment and HTML hyperlink support."""
+    msg = MIMEMultipart("mixed")
     msg_id = make_msgid()
     msg["Message-ID"] = msg_id
     msg["Date"] = datetime.now().strftime("%a, %d %b %Y %H:%M:%S +0000")
@@ -45,8 +48,31 @@ def build_mime_message(
     msg["To"] = formataddr((recipient_name, recipient_email))
     msg["Subject"] = subject
 
-    # Attach plain text body
-    msg.attach(MIMEText(body, "plain", "utf-8"))
+    # Create alternative container for plain text and HTML
+    alt_part = MIMEMultipart("alternative")
+
+    # Plain text body fallback: convert markdown links [Text](URL) -> Text
+    plain_body = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'\1 (\2)', body)
+    alt_part.attach(MIMEText(plain_body, "plain", "utf-8"))
+
+    # HTML body: convert markdown links [Text](URL) -> <a href="URL">Text</a>
+    escaped_body = html.escape(body)
+    html_body_content = re.sub(
+        r'\[([^\]]+)\]\(([^)]+)\)',
+        r'<a href="\2" style="color: #0b57d0; text-decoration: underline;">\1</a>',
+        escaped_body
+    )
+    html_lines = html_body_content.split("\n")
+    html_formatted = "<br>".join(html_lines)
+    full_html = f"""<html>
+<head></head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #222222;">
+<div>{html_formatted}</div>
+</body>
+</html>"""
+    alt_part.attach(MIMEText(full_html, "html", "utf-8"))
+
+    msg.attach(alt_part)
 
     # Attach PDF resume if provided
     if attachment_path:
@@ -168,20 +194,21 @@ def send_test_email(config: AppConfig) -> bool:
         return False
 
 
-def send_approved_batch(drafts: List[EmailDraft], config: AppConfig) -> None:
+def send_approved_batch(drafts: List[EmailDraft], config: AppConfig, limit: Optional[int] = None) -> None:
     """Send all drafts marked as APPROVED with conservative delays and safety checks."""
     approved_drafts = [d for d in drafts if d.status == "APPROVED"]
 
     if not approved_drafts:
         print(f"\n{YELLOW}No APPROVED drafts found to send.{RESET}")
-        print("Run 'python main.py review' to inspect and approve drafts first.")
+        print("Run 'python main.py review' or 'python main.py approve-all' to inspect and approve drafts first.")
         return
 
-    # Check max limit
-    to_send = approved_drafts[:config.max_emails_per_run]
+    # Determine batch limit
+    max_count = limit if limit is not None and limit > 0 else config.max_emails_per_run
+    to_send = approved_drafts[:max_count]
     print(f"\n{CYAN}============================================================{RESET}")
-    print(f"  {BOLD}OUTREACH SENDER: {len(to_send)} approved email(s) queued{RESET}")
-    print(f"  Pacing: {config.min_delay_seconds}s – {config.max_delay_seconds}s randomized delay")
+    print(f"  {BOLD}OUTREACH SENDER: {len(to_send)} approved email(s) queued (Limit: {max_count}){RESET}")
+    print(f"  Pacing: {config.min_delay_seconds}s - {config.max_delay_seconds}s randomized delay")
     print(f"  From: {config.smtp_username}")
     print(f"{CYAN}============================================================{RESET}")
 
@@ -208,7 +235,33 @@ def send_approved_batch(drafts: List[EmailDraft], config: AppConfig) -> None:
 
             print(f"[{idx}/{len(to_send)}] Sending to {BOLD}{draft.name}{RESET} <{draft.email}> @ {draft.company}...", end="", flush=True)
 
-            success, msg_id, err = send_single_draft(draft, config, server=server)
+            # Attempt sending with auto-reconnect on timeout
+            success = False
+            msg_id = None
+            err = None
+            for attempt in range(2):
+                try:
+                    if server is None:
+                        server = connect_smtp(config)
+                    success, msg_id, err = send_single_draft(draft, config, server=server)
+                    if success:
+                        break
+                    # If failed due to connection, reconnect and retry once
+                    if err and any(discon in err.lower() for discon in ["connect", "closed", "broken pipe", "timeout", "reset", "abort"]):
+                        try:
+                            server.quit()
+                        except Exception:
+                            pass
+                        server = connect_smtp(config)
+                        success, msg_id, err = send_single_draft(draft, config, server=server)
+                        if success:
+                            break
+                except Exception as e:
+                    err = str(e)
+                    try:
+                        server = connect_smtp(config)
+                    except Exception:
+                        server = None
 
             now_str = datetime.now().isoformat()
             if success:

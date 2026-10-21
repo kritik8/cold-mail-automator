@@ -118,11 +118,11 @@ def command_generate(args, config, logger):
     existing_drafts = {d.email.lower(): d for d in load_drafts(config.output_json_path, config.output_csv_path)}
 
     for idx, lead in enumerate(leads, 1):
-        # If already exists and is approved or sent, preserve it
+        # If already exists, preserve it to allow seamless resuming
         if lead.email.lower() in existing_drafts:
             prev = existing_drafts[lead.email.lower()]
-            if prev.status in ["APPROVED", "SENT"]:
-                print(f"[{idx}/{len(leads)}] {lead.name} @ {lead.company} -> {GREEN}Preserved ({prev.status}){RESET}")
+            if prev.status in ["APPROVED", "SENT", "GENERATED"] and prev.body:
+                print(f"[{idx}/{len(leads)}] {lead.name} @ {lead.company} -> {GREEN}Loaded Existing ({prev.selected_resume} | {prev.status}){RESET}")
                 drafts.append(prev)
                 continue
 
@@ -144,11 +144,13 @@ def command_generate(args, config, logger):
         )
         drafts.append(draft)
         print(f" {GREEN}{OK_ICON} Drafted ({draft.selected_resume} | Conf: {draft.confidence:.2f}){RESET}")
+        
+        # Incremental save
+        save_drafts(drafts, config.output_csv_path, config.output_json_path)
 
-    # Save to storage
-    save_drafts(drafts, config.output_csv_path, config.output_json_path)
-
-    print(f"\n{GREEN}Generated {len(drafts)} drafts saved to:{RESET}")
+    print(f"\n{GREEN}All {len(drafts)} drafts successfully saved to:{RESET}")
+    print(f"  - {config.output_csv_path}")
+    print(f"  - {config.output_json_path}")
     print(f"  - {config.output_csv_path}")
     print(f"  - {config.output_json_path}")
     print(f"\nRun: {BOLD}python main.py review{RESET} to inspect and approve.")
@@ -165,7 +167,25 @@ def command_review(args, config):
     )
 
 
-def command_send(config):
+def command_approve_all(config):
+    """Mark all currently GENERATED drafts as APPROVED for bulk sending."""
+    drafts = load_drafts(config.output_json_path, config.output_csv_path)
+    if not drafts:
+        print(f"{YELLOW}No drafts found.{RESET}")
+        return
+
+    approved_count = 0
+    for d in drafts:
+        if d.status == "GENERATED":
+            d.status = "APPROVED"
+            approved_count += 1
+
+    save_drafts(drafts, config.output_csv_path, config.output_json_path)
+    total_approved = sum(1 for d in drafts if d.status == "APPROVED")
+    print(f"\n{GREEN}[OK] Successfully approved {approved_count} drafts. Total ready to send: {total_approved}{RESET}")
+
+
+def command_send(args, config):
     """Send approved email drafts via SMTP."""
     drafts = load_drafts(config.output_json_path, config.output_csv_path)
     if not drafts:
@@ -173,7 +193,7 @@ def command_send(config):
         print("Run 'python main.py generate <leads.csv>' first.")
         return
 
-    send_approved_batch(drafts, config)
+    send_approved_batch(drafts, config, limit=getattr(args, "limit", None))
 
 
 def command_status(config):
@@ -227,8 +247,12 @@ def main():
     rev_parser = subparsers.add_parser("review", help="Review generated drafts interactively")
     rev_parser.add_argument("--all", action="store_true", help="Review all drafts including previously decided")
 
+    # approve-all
+    subparsers.add_parser("approve-all", help="Approve all generated drafts in bulk")
+
     # send
-    subparsers.add_parser("send", help="Send approved emails via SMTP")
+    send_parser = subparsers.add_parser("send", help="Send approved emails via SMTP")
+    send_parser.add_argument("--limit", type=int, default=None, help="Maximum number of emails to send (e.g. 15)")
 
     # status
     subparsers.add_parser("status", help="Show system status and stats")
@@ -241,7 +265,8 @@ def main():
 
     # schedule-send
     sched_parser = subparsers.add_parser("schedule-send", help="Schedule approved emails to be sent at a specific date and time")
-    sched_parser.add_argument("--time", default="2026-09-25 09:30:00", help="Target execution timestamp (format: YYYY-MM-DD HH:MM:SS)")
+    sched_parser.add_argument("--time", default="2026-10-15 13:30:00", help="Target execution timestamp (format: YYYY-MM-DD HH:MM:SS)")
+    sched_parser.add_argument("--limit", type=int, default=None, help="Maximum number of emails to send (e.g. 15)")
 
     args = parser.parse_args()
 
@@ -253,11 +278,13 @@ def main():
         command_generate(args, config, logger)
     elif args.command == "review":
         command_review(args, config)
+    elif args.command == "approve-all":
+        command_approve_all(config)
     elif args.command == "send":
-        command_send(config)
+        command_send(args, config)
     elif args.command == "schedule-send":
         from src.scheduler import run_scheduled_job
-        run_scheduled_job(args.time)
+        run_scheduled_job(args.time, limit=args.limit)
     elif args.command == "status":
         command_status(config)
     elif args.command == "test-email":
