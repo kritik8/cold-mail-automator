@@ -1,29 +1,29 @@
 {
-  "resume_1.pdf": {
-    "filename": "resume_1.pdf",
-    "file_path": "C:\\Users\\Kratik\\IIIT Academics\\Hustle\\cold-mail-automator\\resumes\\resume_1.pdf",
-    "resume_name": "Backend & Distributed Systems Resume",
-    "target_profile": "Backend Engineer, Distributed Systems Engineer, SDE Intern, Cloud Systems Engineer",
+  "Kritik_Jain_CV.pdf": {
+    "filename": "Kritik_Jain_CV.pdf",
+    "file_path": "C:\\Users\\Kratik\\IIIT Academics\\Hustle\\cold-mail-automator\\resumes\\Kritik_Jain_CV.pdf",
+    "resume_name": "Backend & Distributed Systems Resume (Go / Cloud / Systems)",
+    "target_profile": "Backend Engineer, Distributed Systems Engineer, Cloud / Infrastructure Engineer, SDE Intern",
     "key_skills": [
-      "Go (Golang)",
-      "Python",
+      "Go",
       "FastAPI",
-      "Django",
+      "Python",
+      "C++",
       "PostgreSQL",
       "Redis",
       "Kafka",
       "Docker",
       "gRPC",
-      "Distributed Systems",
-      "System Design"
+      "Asynchronous Processing",
+      "OpenTelemetry"
     ],
     "strongest_experiences": [
-      "Backend Engineering Intern: Engineered asynchronous event-driven microservices handling 5,000+ RPS with sub-50ms latency using Go, Redis, and PostgreSQL.",
-      "Systems Contributor: Optimized database queries and built resilient retry/rate-limiting middleware eliminating timeouts."
+      "SDE Intern at IndiaMART InterMESH: Engineered a Go-based backend AI Auditor for PNS Call Summary audio, transcripts, and JSON, raising accuracy from 89% to 98.5%.",
+      "Applied ML Intern at Qriocity: Built automated Python pipelines for preprocessing, baseline experimentation, and model evaluation, increasing iteration throughput by 40%."
     ],
     "strongest_projects": [
-      "Distributed Task & Queue Dispatcher: Lightweight worker pool with exponential backoff and dead-letter queues handling 20k+ concurrent jobs.",
-      "High-Performance REST & gRPC Gateway: Secure API gateway with rate limiting and centralized structured logging."
+      "AI Audit Engine (Go): Architected modular Go backend ingesting audio, transcripts, and JSON for automated LLM evaluation with LLM-as-a-Judge and OpenTelemetry.",
+      "BlueChain (FastAPI): Modular FastAPI backend with 5+ asynchronous REST APIs for geospatial satellite imagery processing, schema validation, and tamper-evident reporting."
     ],
     "relevant_keywords": [
       "backend",
@@ -37,107 +37,155 @@
       "database",
       "grpc",
       "scale",
-      "infrastructure"
+      "infrastructure",
+      "cloud",
+      "swe",
+      "software engineer"
     ],
     "suitable_categories": [
-      "Backend/Infra Startup",
-      "High-Scale SaaS",
-      "Cloud Platforms",
-      "FinTech / High-Throughput Services"
-    ],
-    "raw_text": "Kritik Jain\nBackend Engineer | Go | Distributed Systems | Applied AI & LLMs\nBhopal, Madhya Pradesh\n+91 62603 16055 | jkritik8@gmail.com | GitHub | LinkedIn | Portfolio | CodeChef | Codeforces | LeetCode\nEducation\nIndian Institute Of Information Technology, Bhopal Sept 2023 - Present\nBachelor of Technology in Information Technology,CGPA: 9.64\nDeepti Convent Higher Secondary School May 2022\nCISCE XII -95.8% Shujalpur, Madhya Pradesh\nExperience\nSoftware Development Intern - IndiaMART InterMESH Ltd. Jun 2026 - Jul 2026\nSuggestive Replies Team\n\u2022Engineered aGo-based AI Auditor for PNS Call Summary quality across audio, transcripts, and call JSON using\nLangfuse-managed prompts andLLM-as-a-Judge, raising accuracy from89% to 98.5%in approximately six weeks.\n\u2022Deployed intent-based Suggestive Replies and an Actionable Suggestions embeddings-and-clustering model to GPU-backed\nFastAPI/Uvicornproduction workers.\n\u2022Benchmarked multiple LLMs and prompt versions for MagicPen across5,000+ production-like cases, improving\nquality and response consistency.\n\u2022Instrumented production AI services withOpenTelemetry,Langfuse,Kibana, andBigQueryfor observability,\nevaluation, and debugging.\nMachine Learning Intern - Qriocity Nov 2025 - Jan 2026\nRemote Internship\n\u2022Developed end-to-endApplied Machine Learningpipelines in Python for data processing, model experimentation,\nevaluation, and deployment-ready outputs.\n\u2022Automated experimentation, validation, and reporting, cutting analysis turnaround by30%and repeated processing by\n20%.\n\u2022Standardized baselines and evaluation metrics, increasing experimentation throughput by40%across iterative runs.\nProjects\nBlueChain \u2013 Blockchain-based Carbon Monitoring PlatformGitHub | Live\nFastAPI, Asynchronous REST APIs, ML Workflows, Blockchain, Geospatial Data, React\n\u2022Architected a modularFastAPIbackend with5+ asynchronous REST APIsfor carbon-data ingestion, estimation,\nand reporting.\n\u2022Engineered geospatial computer-vision workflows for satellite imagery, vegetatio"
+      "Backend/SWE",
+      "Cloud/Infrastructure",
+      "FinTech",
+      "General Engineering"
+    ]
   },
-  "resume_2.pdf": {
-    "filename": "resume_2.pdf",
-    "file_path": "C:\\Users\\Kratik\\IIIT Academics\\Hustle\\cold-mail-automator\\resumes\\resume_2.pdf",
-    "resume_name": "Backend & Distributed Systems Resume",
-    "target_profile": "Backend Engineer, Distributed Systems Engineer, SDE Intern, Cloud Systems Engineer",
+  "Kritik_Jain_CV2.pdf": {
+    "filename": "Kritik_Jain_CV2.pdf",
+    "file_path": "C:\\Users\\Kratik\\IIIT Academics\\Hustle\\cold-mail-automator\\resumes\\Kritik_Jain_CV2.pdf",
+    "resume_name": "Backend & Web APIs Resume (Go / Node.js / Full-Stack)",
+    "target_profile": "Backend Engineer, API Engineer, Node.js / Express Developer, Web Platform Engineer",
     "key_skills": [
-      "Go (Golang)",
+      "Go",
+      "Node.js",
+      "Express.js",
+      "JavaScript",
       "Python",
       "FastAPI",
-      "Django",
       "PostgreSQL",
       "Redis",
-      "Kafka",
-      "Docker",
-      "gRPC",
-      "Distributed Systems",
-      "System Design"
+      "REST APIs",
+      "Docker"
     ],
     "strongest_experiences": [
-      "Backend Engineering Intern: Engineered asynchronous event-driven microservices handling 5,000+ RPS with sub-50ms latency using Go, Redis, and PostgreSQL.",
-      "Systems Contributor: Optimized database queries and built resilient retry/rate-limiting middleware eliminating timeouts."
+      "SDE Intern at IndiaMART InterMESH: Engineered a Go-based backend AI Auditor with Langfuse-managed prompts and LLM-as-a-Judge, deployed intent-based suggestions on GPU-backed FastAPI workers.",
+      "Applied ML Intern at Qriocity: Developed end-to-end Python pipelines cutting analysis turnaround by 30%."
     ],
     "strongest_projects": [
-      "Distributed Task & Queue Dispatcher: Lightweight worker pool with exponential backoff and dead-letter queues handling 20k+ concurrent jobs.",
-      "High-Performance REST & gRPC Gateway: Secure API gateway with rate limiting and centralized structured logging."
+      "Nyay-Setu (Node.js/Express.js): Engineered RAG retrieval backend with vector embeddings, semantic search, and context packing, improving retrieval relevance by 20%.",
+      "AI Audit Engine (Go): Modular Go backend evaluation system with structured LLM-as-a-Judge and benchmark harness."
     ],
     "relevant_keywords": [
+      "node.js",
+      "nodejs",
+      "javascript",
+      "express",
+      "api",
+      "rest",
+      "web platform",
+      "full-stack",
       "backend",
-      "go",
-      "golang",
-      "distributed",
-      "microservices",
-      "redis",
-      "kafka",
-      "concurrency",
-      "database",
-      "grpc",
-      "scale",
-      "infrastructure"
+      "saas"
     ],
     "suitable_categories": [
-      "Backend/Infra Startup",
-      "High-Scale SaaS",
-      "Cloud Platforms",
-      "FinTech / High-Throughput Services"
-    ],
-    "raw_text": "Kritik Jain\nBackend Engineer | Node.js | JavaScript | REST APIs | Applied AI\nBhopal, Madhya Pradesh\n+91 62603 16055 | jkritik8@gmail.com | GitHub | LinkedIn | Portfolio | CodeChef | Codeforces | LeetCode\nEducation\nIndian Institute Of Information Technology, Bhopal Sept 2023 - Present\nBachelor of Technology in Information Technology,CGPA: 9.64\nDeepti Convent Higher Secondary School May 2022\nCISCE XII -95.8% Shujalpur, Madhya Pradesh\nExperience\nSoftware Development Intern - IndiaMART InterMESH Ltd. Jun 2026 - Jul 2026\nSuggestive Replies Team\n\u2022Engineered aGo-based AI Auditor for PNS Call Summary quality across audio, transcripts, and call JSON using\nLangfuse-managed prompts andLLM-as-a-Judge, raising accuracy from89% to 98.5%in approximately six weeks.\n\u2022Deployed intent-based Suggestive Replies and an Actionable Suggestions embeddings-and-clustering model to GPU-backed\nFastAPI/Uvicornproduction workers.\n\u2022Benchmarked multiple LLMs and prompt versions for MagicPen across5,000+ production-like cases, improving\nquality and response consistency.\n\u2022Instrumented production AI services withOpenTelemetry,Langfuse,Kibana, andBigQueryfor observability,\nevaluation, and debugging.\nMachine Learning Intern - Qriocity Nov 2025 - Jan 2026\nRemote Internship\n\u2022Developed end-to-endApplied Machine Learningpipelines in Python for data processing, model experimentation,\nevaluation, and deployment-ready outputs.\n\u2022Automated experimentation, validation, and reporting, cutting analysis turnaround by30%and repeated processing by\n20%.\n\u2022Standardized baselines and evaluation metrics, increasing experimentation throughput by40%across iterative runs.\nProjects\nNyay-Setu \u2013 RAG-based Legal Assistance ChatbotGitHub\nNode.js, Express.js, JavaScript, RAG, Embeddings, Vector Search, Prompt Engineering, Retrieval Evaluation\n\u2022Engineered a Node.js/Express.jsRAGbackend with embeddings, semantic vector search, context assembly, and\nevidence-grounded answers.\n\u2022Evaluated chunking, top-kranking, and metadata filters on5"
+      "Node.js/Backend",
+      "Web Platform",
+      "SaaS",
+      "Full-Stack"
+    ]
   },
-  "resume_3.pdf": {
-    "filename": "resume_3.pdf",
-    "file_path": "C:\\Users\\Kratik\\IIIT Academics\\Hustle\\cold-mail-automator\\resumes\\resume_3.pdf",
-    "resume_name": "AI / ML & LLM Engineering Resume",
-    "target_profile": "AI/ML Engineer, LLM Systems Engineer, GenAI Developer, Applied ML Intern",
+  "Kritik_Jain_CV3.pdf": {
+    "filename": "Kritik_Jain_CV3.pdf",
+    "file_path": "C:\\Users\\Kratik\\IIIT Academics\\Hustle\\cold-mail-automator\\resumes\\Kritik_Jain_CV3.pdf",
+    "resume_name": "Applied AI & LLM Systems Resume (Generative AI / Agents)",
+    "target_profile": "Applied AI Engineer, LLM Systems Engineer, GenAI Developer, AI Agent Engineer",
     "key_skills": [
       "Python",
       "PyTorch",
-      "LiteLLM",
+      "LLMs",
+      "Generative AI",
       "LangChain",
-      "RAG Pipelines",
-      "Transformers",
+      "LangGraph",
+      "Langfuse",
+      "LLM-as-a-Judge",
+      "RAG",
       "FastAPI",
-      "Vector Databases",
-      "Prompt Optimization"
+      "Vector Search"
     ],
     "strongest_experiences": [
-      "AI Engineering Fellow / Project Lead: Architected end-to-end RAG pipelines and autonomous LLM agents with tool calling, optimizing retrieval latency by 35%.",
-      "Machine Learning Research Intern: Fine-tuned domain-specific transformer models using LoRA/QLoRA on custom instruction datasets."
+      "SDE Intern at IndiaMART InterMESH: Engineered Go AI Auditor using Langfuse and LLM-as-a-Judge raising accuracy from 89% to 98.5%; deployed embeddings-and-clustering models on GPU FastAPI workers.",
+      "Applied ML Intern at Qriocity: Built Python applied ML pipelines with Scikit-learn and PyTorch, increasing experimentation throughput by 40%."
     ],
     "strongest_projects": [
-      "Autonomous Agentic Outreach Engine: Intelligent multi-step synthesis system utilizing web scraping context and prompt optimization.",
-      "Neural Semantic Search & Summarizer: Dense passage retrieval over 100k+ research papers with hybrid re-ranking."
+      "RetinaRetail: YOLO-based computer vision perception and predictive ML analytics platform integrated via FastAPI and React.",
+      "AI Audit Engine: LLM evaluation pipeline with Langfuse prompt versioning and LLM-as-a-Judge benchmark harness."
     ],
     "relevant_keywords": [
+      "ai",
+      "ml",
+      "machine learning",
       "llm",
+      "genai",
+      "generative ai",
       "rag",
       "agent",
-      "fine-tuning",
-      "vector search",
-      "ai",
-      "machine learning",
+      "langchain",
+      "langgraph",
+      "langfuse",
       "nlp",
-      "prompt",
-      "transformers",
-      "pytorch"
+      "transformer"
     ],
     "suitable_categories": [
-      "AI/ML Startup",
-      "GenAI Platform",
-      "Applied AI Company",
-      "Research & LLM Teams"
+      "AI/ML",
+      "LLM/GenAI",
+      "AI Agents",
+      "Applied AI"
+    ]
+  },
+  "Kritik_Jain_CV4.pdf": {
+    "filename": "Kritik_Jain_CV4.pdf",
+    "file_path": "C:\\Users\\Kratik\\IIIT Academics\\Hustle\\cold-mail-automator\\resumes\\Kritik_Jain_CV4.pdf",
+    "resume_name": "Machine Learning, Computer Vision & Research Resume",
+    "target_profile": "Machine Learning Engineer, Computer Vision Engineer, AI Researcher, Deep Learning Intern",
+    "key_skills": [
+      "Python",
+      "PyTorch",
+      "Computer Vision",
+      "YOLO",
+      "Deep Learning",
+      "ConvGRU",
+      "Federated Learning",
+      "Geospatial ML",
+      "FastAPI",
+      "C++"
     ],
-    "raw_text": "Kritik Jain\nApplied AI Engineer | LLMs | Generative AI | Machine Learning\nBhopal, Madhya Pradesh\n+91 62603 16055 | jkritik8@gmail.com | GitHub | LinkedIn | Portfolio | CodeChef | Codeforces | LeetCode\nEducation\nIndian Institute Of Information Technology, Bhopal Sept 2023 - Present\nBachelor of Technology in Information Technology,CGPA: 9.64\nDeepti Convent Higher Secondary School May 2022\nCISCE XII -95.8% Shujalpur, Madhya Pradesh\nExperience\nSoftware Development Intern - IndiaMART InterMESH Ltd. Jun 2026 - Jul 2026\nSuggestive Replies Team\n\u2022Engineered aGo-based AI Auditor for PNS Call Summary data (audio, transcripts, and JSON), improving accuracy from\n89% to 98.5%in approximately six weeks.\n\u2022ImplementedLLM-as-a-JudgewithLangfuse-managed prompts and prompt-version benchmarks for systematic\nevaluation.\n\u2022Deployed intent-based Suggestive Replies and Actionable Suggestions embeddings-and-clustering models to GPU-backed\nFastAPI/Uvicornproduction workers.\n\u2022Benchmarked multiple LLMs and prompts on5,000+ MagicPen production-like cases; instrumented AI evaluation\nand monitoring withKibana,OpenTelemetry, andBigQuery.\nMachine Learning Intern - Qriocity Nov 2025 - Jan 2026\nRemote Internship\n\u2022Built PythonApplied Machine Learningpipelines withScikit-learnandPyTorchfor feature engineering,\nexperimentation, and evaluation.\n\u2022Automated validation and reporting, cutting analysis turnaround by30%and repeated processing by20%.\n\u2022Standardized experiment baselines and evaluation metrics, increasing iterative model experimentation throughput by40%.\nProjects\nNyay-Setu \u2013 LLM-powered Legal Assistance SystemGitHub\nNode.js, Express.js, JavaScript, RAG, Embeddings, Vector Search, Prompt Engineering, Retrieval Evaluation\n\u2022Engineered a Node.js/Express.jsRAGbackend for embeddings, semantic vector search, context assembly, and grounded\ngeneration.\n\u2022Evaluated chunking, top-kranking, and metadata filters on50+ legal queries, improving retrieval relevance by20%.\n\u2022Optimized vector retrieval and context pack"
+    "strongest_experiences": [
+      "SDE Intern at IndiaMART InterMESH: Engineered AI Auditor and deployed intent/clustering models to GPU-backed FastAPI workers; evaluated LLMs across 5,000+ production cases.",
+      "Research Publication (Vehicular Communications Journal): Co-authored a 26-page survey analyzing ConvGRU sequence models and federated learning under non-IID edge constraints for vehicular intrusion detection."
+    ],
+    "strongest_projects": [
+      "RetinaRetail: YOLO computer-vision perception pipeline for headcount detection, queue analytics, and traffic simulation.",
+      "BlueChain: Geospatial computer vision workflows for satellite imagery, vegetation segmentation, and carbon estimation."
+    ],
+    "relevant_keywords": [
+      "computer vision",
+      "vision",
+      "cv",
+      "yolo",
+      "deep learning",
+      "research",
+      "robotics",
+      "autonomous",
+      "simulation",
+      "federated learning",
+      "graphics",
+      "game ai",
+      "image"
+    ],
+    "suitable_categories": [
+      "Research",
+      "Computer Vision",
+      "Robotics/Autonomous",
+      "Simulation / Game AI"
+    ]
   }
 }

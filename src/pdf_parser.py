@@ -99,28 +99,36 @@ def analyze_resume_text(filename: str, file_path: str, raw_text: str) -> ResumeP
 def load_resume_profiles(resumes_dir: str, config_dir: Optional[str] = None) -> Dict[str, ResumeProfile]:
     """Inspect all configured resumes and return structured resume profiles."""
     profiles: Dict[str, ResumeProfile] = {}
-    expected_files = ["resume_1.pdf", "resume_2.pdf", "resume_3.pdf"]
 
-    for filename in expected_files:
-        file_path = os.path.join(resumes_dir, filename)
-        if os.path.exists(file_path):
-            try:
-                raw_text = extract_text_from_pdf(file_path)
-                profile = analyze_resume_text(filename, file_path, raw_text)
-                profiles[filename] = profile
-                logger.info(f"Loaded and analyzed resume: {filename} -> {profile.resume_name}")
-            except Exception as e:
-                logger.error(f"Error parsing resume {file_path}: {e}")
-        else:
-            logger.warning(f"Resume file {filename} does not exist at {file_path}")
-
-    # Optionally persist structured profiles to config/resumes.json
+    # Check if pre-configured resumes.json exists
     if config_dir:
         resumes_json_path = os.path.join(config_dir, "resumes.json")
+        if os.path.exists(resumes_json_path):
+            try:
+                with open(resumes_json_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    for filename, prof_dict in data.items():
+                        # Ensure file_path points to existing file or resumes_dir
+                        if "file_path" not in prof_dict or not os.path.exists(prof_dict["file_path"]):
+                            prof_dict["file_path"] = os.path.join(resumes_dir, filename)
+                        profiles[filename] = ResumeProfile(**prof_dict)
+                if profiles:
+                    logger.info(f"Loaded {len(profiles)} resume profiles from {resumes_json_path}")
+                    return profiles
+            except Exception as e:
+                logger.warning(f"Failed to load profiles from {resumes_json_path}: {e}")
+
+    # Fallback: scan resumes_dir for any PDFs
+    pdf_files = [f for f in os.listdir(resumes_dir) if f.lower().endswith(".pdf")] if os.path.exists(resumes_dir) else []
+    for filename in sorted(pdf_files):
+        file_path = os.path.join(resumes_dir, filename)
         try:
-            with open(resumes_json_path, "w", encoding="utf-8") as f:
-                json.dump({k: v.model_dump() for k, v in profiles.items()}, f, indent=2)
+            raw_text = extract_text_from_pdf(file_path)
+            profile = analyze_resume_text(filename, file_path, raw_text)
+            profiles[filename] = profile
+            logger.info(f"Loaded and analyzed resume: {filename} -> {profile.resume_name}")
         except Exception as e:
-            logger.warning(f"Could not save resumes.json: {e}")
+            logger.error(f"Error parsing resume {file_path}: {e}")
 
     return profiles
+
