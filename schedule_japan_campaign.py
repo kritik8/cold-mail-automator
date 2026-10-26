@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from send_japan_campaign import send_japan_outreach
 from src.logger import setup_logger
 
-logger = setup_logger(logs_dir="logs")
+logger = setup_logger(log_dir="logs")
 
 def get_next_run_datetime(hour: int = 6, minute: int = 30) -> datetime:
     """Calculate the next upcoming target datetime at specified IST hour and minute."""

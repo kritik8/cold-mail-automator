@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from src.config import load_config
 from src.logger import setup_logger
 
-logger = setup_logger(logs_dir="logs")
+logger = setup_logger(log_dir="logs")
 
 def send_japan_outreach(dry_run: bool = True, max_send: int = 100) -> Dict[str, Any]:
     """Execute or simulate sending the Japan outreach campaign."""
