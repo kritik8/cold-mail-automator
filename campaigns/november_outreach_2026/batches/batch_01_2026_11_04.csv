@@ -1,0 +1,301 @@
+Batch,Index,Email,Name,Company,First Name,Email Type,Domain,Custom Subject,Personalization Line,Selected Resume,Email Body,Status,Scheduled Date,Sent At
+Batch 01,1,hr@loonslab.com,,Loons Lab,,Generic inbox,loonslab.com,IT Undergraduate exploring Engineering Opportunities at Loons Lab,I came across Loons Lab's work building mission-critical enterprise systems and digital infrastructure across healthcare and the public sector.,Kritik_Jain_CV.pdf,"Hi Team,
+
+I came across Loons Lab's work building mission-critical enterprise systems and digital infrastructure across healthcare and the public sector.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal with strong foundations in backend engineering and applied AI. During my SDE internship at IndiaMART InterMESH, I built an automated evaluation service in Go and FastAPI instrumented with OpenTelemetry, improving audit accuracy to 98.5%. I also actively solve algorithmic challenges (CodeChef 4-star, 900+ DSA problems).
+
+Are there any internship or early-career engineering openings at Loons Lab where my backend and systems skills could help?
+
+My resume and projects are at https://kritikjain.in/ (GitHub: https://github.com/kritik8).
+
+Best regards,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,2,hr@codeaxistech.com,,CodeAxis Tech,,Generic inbox,codeaxistech.com,Engineering Opportunities at CodeAxis Tech — Kritik Jain,I've been following CodeAxis Tech's focus on delivering agile cloud solutions and full-lifecycle software engineering for clients.,Kritik_Jain_CV.pdf,"Hi Team,
+
+I've been following CodeAxis Tech's focus on delivering agile cloud solutions and full-lifecycle software engineering for clients.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal specializing in backend architecture and API development. Previously as an SDE intern at IndiaMART, I engineered asynchronous Go and FastAPI microservices and deployed real-time suggestion pipelines, improving evaluation consistency across 5,000+ cases. I also bring strong data structures foundations with 900+ problems solved.
+
+Could you let me know if CodeAxis Tech has any upcoming software engineering internship or new-grad openings?
+
+You can explore my projects and resume at https://kritikjain.in/.
+
+Best regards,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,3,hr@aichipsoc.com,,AI Chip SoC,,Generic inbox,aichipsoc.com,Software & Edge AI Opportunities at AI Chip SoC — Kritik Jain,"I was fascinated by AI Chip SoC's work on silicon design, RISC-V validation, and edge AI accelerator integration.",Kritik_Jain_CV4.pdf,"Hi Team,
+
+I was fascinated by AI Chip SoC's work on silicon design, RISC-V validation, and edge AI accelerator integration.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal combining systems programming (C++, Python, Go) and machine learning. I recently co-authored a 26-page research survey analyzing sequence models and federated learning under non-IID edge constraints for vehicular networks. I also maintain a CodeChef 4-star rating with 900+ algorithmic problems solved.
+
+Is AI Chip SoC open to interns or junior engineers interested in edge intelligence, benchmarking, and systems software?
+
+My background and resume are available at https://kritikjain.in/.
+
+Best regards,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,4,nevil.parekh@mastical.com,Nevil Parekh,Mastical,Nevil,Personal,mastical.com,Engineering Opportunities at Mastical — Kritik Jain,I've been following Mastical's focus on architecting modern digital systems and custom enterprise cloud solutions.,Kritik_Jain_CV.pdf,"Hi Nevil,
+
+I've been following Mastical's focus on architecting modern digital systems and custom enterprise cloud solutions.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal with practical experience in high-performance backend services and applied ML. During my SDE internship at IndiaMART, I engineered Go-based audit pipelines and modular FastAPI services, increasing automated review accuracy from 89% to 98.5%. I am also an active competitive programmer with 900+ solved DSA challenges.
+
+Are you open to considering a motivated junior backend or software engineer for an internship or early-career role?
+
+My resume and portfolio are at https://kritikjain.in/.
+
+Best,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,5,denina@fastcode.ai,Denina,FastCode AI,Denina,Personal,fastcode.ai,Applied AI / ML Engineering at FastCode AI — Kritik Jain,"I came across FastCode AI's focus on solving deep technical ML challenges, from computer vision architectures to causal reasoning.",Kritik_Jain_CV3.pdf,"Hi there,
+
+I came across FastCode AI's focus on solving deep technical ML challenges, from computer vision architectures to causal reasoning.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal working across computer vision and LLM systems. I developed RetinaRetail—an end-to-end perception system combining YOLO and analytics for spatial traffic modeling—and previously built an automated AI audit pipeline using LLM-as-a-Judge and Langfuse at IndiaMART InterMESH.
+
+Could you let me know if FastCode AI is open to research or applied ML engineering interns?
+
+My projects and resume are accessible at https://kritikjain.in/ and https://github.com/kritik8.
+
+Best,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,6,arjun@fastcode.ai,Arjun,FastCode AI,Arjun,Personal,fastcode.ai,ML & Systems Engineering Opportunities — Kritik Jain,I've been following FastCode AI's work tackling high-complexity machine learning problems and custom model development.,Kritik_Jain_CV3.pdf,"Hi there,
+
+I've been following FastCode AI's work tackling high-complexity machine learning problems and custom model development.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal with strong foundations in applied ML and systems engineering. In my projects, I built YOLO-based visual perception pipelines for retail flow analysis and co-authored research evaluating deep sequence models and distributed learning. I also hold a CodeChef 4-star rating (1810 peak).
+
+Does FastCode AI currently have room for an applied AI or ML engineering intern?
+
+You can review my code and resume at https://github.com/kritik8 and https://kritikjain.in/.
+
+Best,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,7,hiring@jobish.in,,Jobish,,Generic inbox,jobish.in,Software Engineering Opportunities at Jobish — Kritik Jain,I noticed Jobish's focus on streamlining hiring and modernizing talent discovery for job seekers and recruiters.,Kritik_Jain_CV.pdf,"Hi Team,
+
+I noticed Jobish's focus on streamlining hiring and modernizing talent discovery for job seekers and recruiters.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal with hands-on experience developing robust backend services and APIs. During my SDE internship at IndiaMART, I built automated Go services with OpenTelemetry observability and deployed NLP/intent-based recommendation models. I also have solved 900+ algorithmic problems on CodeChef (4-star).
+
+Are there any internship or entry-level software engineering openings on your team?
+
+My full profile and resume are available at https://kritikjain.in/.
+
+Best regards,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,8,hr@placjo.com,,Placjo,,Generic inbox,placjo.com,Backend / Software Engineering Internships at Placjo — Kritik Jain,I came across Placjo's work bridging hiring workflows and career solutions through tech-driven talent platforms.,Kritik_Jain_CV.pdf,"Hi Team,
+
+I came across Placjo's work bridging hiring workflows and career solutions through tech-driven talent platforms.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal specializing in backend systems (Python, Go, FastAPI) and relational databases. Previously as an SDE intern at IndiaMART, I engineered high-throughput audit services and API gateways handling automated evaluations. I also have strong data structures credentials with 900+ DSA problems solved.
+
+Could you let me know if Placjo has any openings for software engineering interns?
+
+My resume and portfolio are linked at https://kritikjain.in/.
+
+Best regards,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,9,careers@serenetic.in,,Serenetic,,Generic inbox,serenetic.in,Software Engineering Opportunities at Serenetic — Kritik Jain,I was impressed by Serenetic's engineering work building scalable cloud applications and digital platforms for global clients.,Kritik_Jain_CV.pdf,"Hi Team,
+
+I was impressed by Serenetic's engineering work building scalable cloud applications and digital platforms for global clients.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal focused on resilient backend engineering, REST APIs, and cloud services. At IndiaMART InterMESH, I built an automated Go-based evaluation service with OpenTelemetry and BigQuery, boosting audit accuracy from 89% to 98.5%. I am also an active competitive programmer (CodeChef 4-star, 1810).
+
+Is Serenetic currently hiring software engineering interns or junior developers?
+
+My resume and key projects are available at https://kritikjain.in/ and https://github.com/kritik8.
+
+Best regards,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,10,anushree@topmate.io,Anushree,Topmate,Anushree,Personal,topmate.io,Engineering Opportunities at Topmate — Kritik Jain,I really admire how Topmate has scaled to empower creators and professionals to monetize their time seamlessly.,Kritik_Jain_CV2.pdf,"Hi there,
+
+I really admire how Topmate has scaled to empower creators and professionals to monetize their time seamlessly.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal specializing in high-throughput backend services and APIs. During my SDE internship at IndiaMART, I engineered asynchronous Go backends, instrumented request tracing with OpenTelemetry, and optimized model inference pipelines. I also have strong algorithmic fundamentals with 900+ DSA problems solved (CodeChef 4-star).
+
+Is Topmate open to considering a junior backend or full-stack software engineer for upcoming openings?
+
+My projects and resume are at https://kritikjain.in/ (GitHub: https://github.com/kritik8).
+
+Best,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,11,meenakshi@fundamento.ai,Meenakshi,Fundamento,Meenakshi,Personal,fundamento.ai,AI / Backend Engineering at Fundamento — Kritik Jain,I've been following Fundamento's innovative work building conversational voice agents and automated contact intelligence for financial institutions.,Kritik_Jain_CV3.pdf,"Hi there,
+
+I've been following Fundamento's innovative work building conversational voice agents and automated contact intelligence for financial institutions.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal working at the intersection of backend systems and LLM evaluation. At IndiaMART InterMESH, I developed a Go-based AI Auditor evaluating call summaries and transcripts using Langfuse and LLM-as-a-Judge, driving validation accuracy from 89% to 98.5%. I have also built sub-second RAG retrieval pipelines in Node.js.
+
+Are there any internship or early-career engineering opportunities open on your engineering team?
+
+My resume and work are at https://kritikjain.in/.
+
+Best,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,12,shweta.1.verma@coforge.com,Shweta Verma,Coforge,Shweta,Personal,coforge.com,Early-Career Engineering Opportunities at Coforge — Kritik Jain,"I have been following Coforge's digital transformation initiatives across cloud architecture, data platforms, and enterprise AI.",Kritik_Jain_CV.pdf,"Hi Shweta,
+
+I have been following Coforge's digital transformation initiatives across cloud architecture, data platforms, and enterprise AI.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal with strong foundations in backend engineering (Python, Go, FastAPI) and applied ML. During my SDE internship at IndiaMART InterMESH, I built an automated evaluation service instrumented with OpenTelemetry and BigQuery, achieving a 98.5% audit accuracy. I also bring strong algorithmic credentials with 900+ solved DSA challenges.
+
+Could you let me know if Coforge is hiring software engineering interns or graduate trainees?
+
+My resume and project details are available at https://kritikjain.in/.
+
+Best,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,13,nandan.goel@1mg.com,Nandan Goel,1mg,Nandan,Personal,1mg.com,Software Engineering Opportunities at Tata 1mg — Kritik Jain,"I really admire Tata 1mg's engineering scale delivering healthcare access, diagnostics, and e-pharmacy across millions of users.",Kritik_Jain_CV.pdf,"Hi Nandan,
+
+I really admire Tata 1mg's engineering scale delivering healthcare access, diagnostics, and e-pharmacy across millions of users.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal with hands-on experience building reliable backend services and APIs. As an SDE intern at IndiaMART, I developed Go-based audit workflows and modular FastAPI services for intent classification and suggestion generation, serving production workloads. I also have strong problem-solving skills (CodeChef 4-star, 900+ DSA problems).
+
+Is your engineering team currently open to considering software engineering interns or new grads?
+
+My resume and GitHub are linked at https://kritikjain.in/ and https://github.com/kritik8.
+
+Best,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,14,priya.chauhan@appzime.com,Priya Chauhan,Appzime,Priya,Personal,appzime.com,Software Engineering Opportunities at Appzime — Kritik Jain,"I noticed Appzime's focus on delivering high-impact custom software, cloud development, and AI-enabled business applications.",Kritik_Jain_CV.pdf,"Hi Priya,
+
+I noticed Appzime's focus on delivering high-impact custom software, cloud development, and AI-enabled business applications.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal specializing in backend architecture, REST APIs, and applied AI. During my SDE internship at IndiaMART, I engineered a Go-based automated evaluation pipeline using Langfuse and LLM-as-a-Judge, boosting accuracy to 98.5%. I am also an active competitive programmer with a 4-star rating on CodeChef.
+
+Does Appzime have any open internship or entry-level software developer positions?
+
+My portfolio and resume are available at https://kritikjain.in/.
+
+Best,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,15,careers@houseofkoala.com,,House of Koala,,Generic inbox,houseofkoala.com,Engineering Opportunities at House of Koala — Kritik Jain,I've been following House of Koala's rapid growth and creative brand presence in modern urban fashion.,Kritik_Jain_CV2.pdf,"Hi Team,
+
+I've been following House of Koala's rapid growth and creative brand presence in modern urban fashion.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal with experience in full-stack web platforms, backend APIs, and database design. I have built modular asynchronous FastAPI backends, integrated real-time workflows, and previously engineered automated evaluation services during my SDE internship at IndiaMART. I also bring strong problem-solving skills with 900+ solved algorithmic problems.
+
+Are there any software engineering or tech internship openings supporting your digital and e-commerce platforms?
+
+My portfolio and resume can be found at https://kritikjain.in/.
+
+Best regards,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,16,mahak.aswani@hidanitech.com,Mahak Aswani,Hidani Tech,Mahak,Personal,hidanitech.com,Software / Backend Engineering Opportunities — Kritik Jain,I noticed Hidani Tech's work supporting modern technical talent management and digital staffing solutions.,Kritik_Jain_CV.pdf,"Hi Mahak,
+
+I noticed Hidani Tech's work supporting modern technical talent management and digital staffing solutions.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal with a strong background in backend engineering and applied AI. As an SDE intern at IndiaMART InterMESH, I built an automated Go-based evaluation engine instrumented with OpenTelemetry and Langfuse, raising accuracy to 98.5%. I also hold a CodeChef 4-star rating with 900+ DSA problems solved.
+
+Could you let me know if there are suitable software engineering or backend opportunities you are currently hiring for?
+
+My resume and portfolio are available at https://kritikjain.in/.
+
+Best,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,17,priya@vaysinfotech.com,Priya,Vays Infotech,Priya,Personal,vaysinfotech.com,Software & Systems Opportunities at Vays Infotech — Kritik Jain,"I came across Vays Infotech's enterprise expertise across wireless network design, IT infrastructure, and digital solutions.",Kritik_Jain_CV.pdf,"Hi there,
+
+I came across Vays Infotech's enterprise expertise across wireless network design, IT infrastructure, and digital solutions.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal with practical experience in network protocols, backend services, and distributed systems. I have worked extensively with Go, Python, and C++, building asynchronous APIs and automated monitoring workflows at IndiaMART. In addition, I have solved 900+ algorithmic problems on CodeChef.
+
+Is Vays Infotech open to considering an engineering intern or junior developer for upcoming infrastructure or software projects?
+
+My resume and background are at https://kritikjain.in/.
+
+Best,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,18,marketing@oneassure.in,,OneAssure,,Generic inbox,oneassure.in,Engineering Opportunities at OneAssure — Kritik Jain,I've been following how OneAssure is making health insurance transparent and accessible through smart advisory technology.,Kritik_Jain_CV.pdf,"Hi Team,
+
+I've been following how OneAssure is making health insurance transparent and accessible through smart advisory technology.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal with practical experience building high-scale backend services and data workflows. During my SDE internship at IndiaMART, I built Go services with OpenTelemetry tracing and automated quality validation, raising accuracy to 98.5%. I also maintain a 4-star rating on CodeChef (1810 peak).
+
+Could you please forward this to your engineering leads to see if there are software internship or new-grad opportunities?
+
+My resume and work are at https://kritikjain.in/.
+
+Best regards,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,19,aayushar@qti.qualcomm.com,Aayusha R,Qualcomm,Aayusha,Personal,qti.qualcomm.com,Software Engineering & Systems Opportunities at Qualcomm — Kritik Jain,"I have always followed Qualcomm's industry leadership in edge computing, wireless communications, and AI acceleration.",Kritik_Jain_CV4.pdf,"Hi Aayusha,
+
+I have always followed Qualcomm's industry leadership in edge computing, wireless communications, and AI acceleration.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal with strong fundamentals in systems programming (C++, Python, Go) and machine learning. I recently co-authored a 26-page research survey analyzing sequence models and federated learning under non-IID edge constraints. I also bring competitive programming credentials (CodeChef 4-star, 900+ DSA problems).
+
+Could you let me know if Qualcomm has openings for software engineering interns or graduate systems engineers?
+
+My resume and projects are accessible at https://kritikjain.in/ (GitHub: https://github.com/kritik8).
+
+Best,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,20,jobs@invariant-ai.com,,Invariant AI,,Generic inbox,invariant-ai.com,AI Agents & Systems Engineering at Invariant AI — Kritik Jain,I was thrilled to discover Invariant AI's work building autonomous compliance and regulatory agents for high-stakes physical industries.,Kritik_Jain_CV3.pdf,"Hi Team,
+
+I was thrilled to discover Invariant AI's work building autonomous compliance and regulatory agents for high-stakes physical industries.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal specializing in AI agent evaluation and RAG architectures. At IndiaMART InterMESH, I built an automated Go-based AI Auditor with Langfuse and LLM-as-a-Judge, boosting validation accuracy across 5,000+ cases. I also built Nyay-Setu, a domain RAG pipeline with grounded generation and citation safeguards.
+
+Are you open to interns or junior engineers passionate about reliable AI agents and domain retrieval?
+
+My code and resume are at https://github.com/kritik8 and https://kritikjain.in/.
+
+Best regards,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,21,sanket.pawar@fulcrumdigital.com,Sanket Pawar,Fulcrum Digital,Sanket,Personal,fulcrumdigital.com,Software Engineering Opportunities at Fulcrum Digital — Kritik Jain,I've been following Fulcrum Digital's digital platform engineering and cloud solutions driving enterprise transformation.,Kritik_Jain_CV.pdf,"Hi Sanket,
+
+I've been following Fulcrum Digital's digital platform engineering and cloud solutions driving enterprise transformation.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal with experience building scalable backend APIs and applied AI workflows. During my SDE internship at IndiaMART, I engineered Go services instrumented with OpenTelemetry, Langfuse, and BigQuery, achieving 98.5% audit accuracy. I also bring strong algorithmic problem-solving skills with 900+ solved DSA challenges.
+
+Could you let me know if Fulcrum Digital has any current software engineering internship or graduate openings?
+
+My resume and portfolio are available at https://kritikjain.in/.
+
+Best,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,22,careers@qulus.ai,,Qulus,,Generic inbox,qulus.ai,AI Cloud & Infrastructure Opportunities at Qulus — Kritik Jain,I was excited to learn about Qulus's enterprise AI cloud infrastructure and high-performance computing solutions.,Kritik_Jain_CV.pdf,"Hi Team,
+
+I was excited to learn about Qulus's enterprise AI cloud infrastructure and high-performance computing solutions.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal with a focus on systems architecture, Go backends, and ML deployment. Previously at IndiaMART InterMESH, I deployed intent and clustering models to GPU-backed FastAPI inference workers and built automated evaluation pipelines with OpenTelemetry. I also maintain a CodeChef 4-star rating with 900+ DSA problems solved.
+
+Is Qulus currently considering interns or early-career engineers for cloud infrastructure or ML platform teams?
+
+My resume and GitHub are at https://kritikjain.in/ and https://github.com/kritik8.
+
+Best regards,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,23,gyanendra.s@cisinlabs.com,Gyanendra S,CISIN Labs,Gyanendra,Personal,cisinlabs.com,Software Engineering Opportunities at CISIN Labs — Kritik Jain,"I noticed CISIN Labs' extensive track record delivering enterprise software engineering, cloud systems, and digital products.",Kritik_Jain_CV.pdf,"Hi there,
+
+I noticed CISIN Labs' extensive track record delivering enterprise software engineering, cloud systems, and digital products.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal with practical experience in backend development and API design (Python, Go, FastAPI, Node.js). During my SDE internship at IndiaMART, I built automated Go-based evaluation services and API workflows with OpenTelemetry observability. I also have strong algorithmic credentials with 900+ DSA problems solved.
+
+Could you let me know if CISIN Labs is open to software engineering interns or junior developers?
+
+My resume and portfolio are available at https://kritikjain.in/.
+
+Best,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,24,sunitha.koppula@trackmind.com,Sunitha Koppula,Trackmind,Sunitha,Personal,trackmind.com,Applied AI & Engineering Opportunities at Trackmind — Kritik Jain,"I was fascinated by Trackmind's focus on AI-driven analytics, predictive quality control, and real-time operational intelligence.",Kritik_Jain_CV3.pdf,"Hi Sunitha,
+
+I was fascinated by Trackmind's focus on AI-driven analytics, predictive quality control, and real-time operational intelligence.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal working in applied ML and predictive pipelines. I developed RetinaRetail, integrating YOLO perception and analytics workflows for predictive store traffic and diagnosis in FastAPI and React. At IndiaMART, I also built automated evaluation systems raising accuracy from 89% to 98.5%.
+
+Does Trackmind have any internship or early-career openings in applied ML or software engineering?
+
+My projects and resume are available at https://kritikjain.in/ and https://github.com/kritik8.
+
+Best,
+Kritik Jain",Drafted,2026-11-04,
+Batch 01,25,prince.gupta@enser.co.in,Prince Gupta,Enser,Prince,Personal,enser.co.in,Software & Automation Opportunities at Enser — Kritik Jain,I've been following Enser's technology-driven operations and customer experience management solutions.,Kritik_Jain_CV.pdf,"Hi Prince,
+
+I've been following Enser's technology-driven operations and customer experience management solutions.
+
+I am a final-year B.Tech Information Technology student at IIIT Bhopal with experience in backend services, workflow automation, and applied AI. As an SDE intern at IndiaMART InterMESH, I developed an automated audit service evaluating customer call summaries and transcripts, boosting accuracy to 98.5%. In addition, I have solved 900+ algorithmic problems on CodeChef (4-star rating).
+
+Are there any software engineering or tech internship openings at Enser where my background could be helpful?
+
+My background and resume can be found at https://kritikjain.in/.
+
+Best,
+Kritik Jain",Drafted,2026-11-04,
