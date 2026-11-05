@@ -6,6 +6,13 @@ and logs records to send_history.json and data/november_campaign_tracker.csv.
 """
 import os
 import sys
+
+# Force immediate flush of output
+try:
+    sys.stdout.reconfigure(line_buffering=True)
+except Exception:
+    pass
+
 import csv
 import time
 import json
@@ -78,8 +85,10 @@ def update_lead_status(email: str, status: str, sent_at: str = "") -> None:
         writer.writeheader()
         writer.writerows(rows)
 
-def dispatch_batch(target_date: str, dry_run: bool = True, max_send: int = 50) -> Dict[str, Any]:
+def dispatch_batch(target_date: str, dry_run: bool = True, max_send: int = 50, min_delay: float = None, max_delay: float = None) -> Dict[str, Any]:
     config = load_config()
+    actual_min_delay = min_delay if min_delay is not None else config.min_delay_seconds
+    actual_max_delay = max_delay if max_delay is not None else config.max_delay_seconds
     leads = load_campaign_leads(target_date=target_date)
     unprocessed = [l for l in leads if l.get("Status") in ["GENERATED", "DRAFTED", "PENDING"]]
 
@@ -176,7 +185,7 @@ def dispatch_batch(target_date: str, dry_run: bool = True, max_send: int = 50) -
                 print(f"[{idx}/{len(unprocessed)}] SENT -> {lead['Company']} ({recipient_email}) | Resume: {resume_filename}")
 
                 if idx < len(unprocessed):
-                    delay = random.uniform(config.min_delay_seconds, config.max_delay_seconds)
+                    delay = random.uniform(actual_min_delay, actual_max_delay)
                     print(f"  ... pausing {delay:.1f}s to maintain delivery reputation ...")
                     time.sleep(delay)
 
@@ -202,8 +211,10 @@ if __name__ == "__main__":
     parser.add_argument("--today", action="store_true", help="Send emails scheduled for today")
     parser.add_argument("--live", action="store_true", help="Enable live sending mode (default: dry run)")
     parser.add_argument("--limit", type=int, default=50, help="Maximum emails to send in one run")
+    parser.add_argument("--min-delay", type=float, default=None, help="Custom minimum delay in seconds")
+    parser.add_argument("--max-delay", type=float, default=None, help="Custom maximum delay in seconds")
 
     args = parser.parse_args()
     target_dt = datetime.now().strftime("%Y-%m-%d") if args.today else args.date
-    dispatch_batch(target_date=target_dt, dry_run=not args.live, max_send=args.limit)
+    dispatch_batch(target_date=target_dt, dry_run=not args.live, max_send=args.limit, min_delay=args.min_delay, max_delay=args.max_delay)
 
