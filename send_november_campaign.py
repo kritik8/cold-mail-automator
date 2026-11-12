@@ -169,24 +169,33 @@ def update_followup_status(email: str, status: str, sent_at: str = "") -> None:
         writer.writeheader()
         writer.writerows(rows)
 
-def connect_smtp(config):
-    print(f"\n[LIVE] Connecting to SMTP server {config.smtp_host}:{config.smtp_port}...")
-    if config.smtp_use_ssl:
-        server = smtplib.SMTP_SSL(config.smtp_host, config.smtp_port, timeout=30)
-    else:
-        server = smtplib.SMTP(config.smtp_host, config.smtp_port, timeout=30)
-        if config.smtp_use_tls:
-            server.starttls()
-    server.login(config.smtp_username, config.smtp_password)
-    print("[SUCCESS] SMTP authenticated successfully.\n")
-    return server
+def connect_smtp(config, max_retries: int = 3, retry_delay: float = 5.0):
+    for attempt in range(1, max_retries + 1):
+        try:
+            print(f"\n[LIVE] Connecting to SMTP server {config.smtp_host}:{config.smtp_port} (attempt {attempt}/{max_retries})...")
+            if config.smtp_use_ssl:
+                server = smtplib.SMTP_SSL(config.smtp_host, config.smtp_port, timeout=30)
+            else:
+                server = smtplib.SMTP(config.smtp_host, config.smtp_port, timeout=30)
+                if config.smtp_use_tls:
+                    server.starttls()
+            server.login(config.smtp_username, config.smtp_password)
+            print("[SUCCESS] SMTP authenticated successfully.\n")
+            return server
+        except Exception as e:
+            print(f"  [WARN] SMTP connection failed ({e}).")
+            if attempt < max_retries:
+                print(f"  Retrying in {retry_delay}s...")
+                time.sleep(retry_delay)
+            else:
+                raise e
 
 def dispatch_batch(target_date: str, dry_run: bool = True, max_send: int = 50, min_delay: float = None, max_delay: float = None, server = None) -> Dict[str, Any]:
     config = load_config()
     actual_min_delay = min_delay if min_delay is not None else config.min_delay_seconds
     actual_max_delay = max_delay if max_delay is not None else config.max_delay_seconds
     leads = load_campaign_leads(target_date=target_date)
-    unprocessed = [l for l in leads if l.get("Status") in ["GENERATED", "DRAFTED", "PENDING"]]
+    unprocessed = [l for l in leads if l.get("Status") != "SENT"]
 
     print("\n" + "=" * 65)
     print(f"  NOVEMBER OUTREACH DISPATCHER (FIRST-TOUCH) — {target_date}")
