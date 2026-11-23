@@ -128,8 +128,7 @@ def select_role_and_resume(company, detail):
 
 # Build First-Touch Email Body (under 120 words, strictly IT student, no CS)
 def build_first_touch_email(salutation, company, role_title, strength_focus, detail, variant_idx):
-    links = "Portfolio: https://kritikjain.in/ | GitHub: https://github.com/kritik8"
-    signoff = f"Best regards,\nKritik Jain\n{links}"
+    signoff = "Warm regards,\nKritik Jain\n[GitHub](https://github.com/kritik8) | [LinkedIn](https://www.linkedin.com/in/kritik-jain-064350356/) | [Portfolio](https://kritikjain.in/)"
     
     v = variant_idx % 3
     if v == 0:
@@ -162,8 +161,7 @@ def build_first_touch_email(salutation, company, role_title, strength_focus, det
 
 # Build Follow-Up Email Body (2-3 lines, polite, under 60 words)
 def build_followup_body(salutation, company, role_title, variant_idx):
-    links = "Portfolio: https://kritikjain.in/ | GitHub: https://github.com/kritik8"
-    signoff = f"Best regards,\nKritik Jain\n{links}"
+    signoff = "Warm regards,\nKritik Jain\n[GitHub](https://github.com/kritik8) | [LinkedIn](https://www.linkedin.com/in/kritik-jain-064350356/) | [Portfolio](https://kritikjain.in/)"
     
     v = variant_idx % 3
     if v == 0:
@@ -189,22 +187,21 @@ def build_followup_body(salutation, company, role_title, variant_idx):
         )
 
 # 5. Batch & Schedule Construction
-# Schedule starts 2026-11-21 (Saturday)
+# Schedule starts 2026-11-23 (Monday)
 # Daily first-touch limit = 20 mails/day
-# Weekends: Sat 21 Nov (Day 1), Sun 22 Nov (pause), Mon 23 Nov (Day 2), etc.
+# Weekdays only (Mon-Fri), strictly no sending on Sat-Sun
 business_calendar = [
-    ('Day 01', '2026-11-21', '2026-11-25'), # Sat 21 Nov -> Follow-up Wed 25 Nov
-    ('Day 02', '2026-11-23', '2026-11-26'), # Mon 23 Nov -> Follow-up Thu 26 Nov
-    ('Day 03', '2026-11-24', '2026-11-27'), # Tue 24 Nov -> Follow-up Fri 27 Nov
-    ('Day 04', '2026-11-25', '2026-11-30'), # Wed 25 Nov -> Follow-up Mon 30 Nov (skips weekend 28-29)
-    ('Day 05', '2026-11-26', '2026-12-01'), # Thu 26 Nov -> Follow-up Tue 01 Dec
-    ('Day 06', '2026-11-27', '2026-12-02'), # Fri 27 Nov -> Follow-up Wed 02 Dec
-    ('Day 07', '2026-11-30', '2026-12-03'), # Mon 30 Nov -> Follow-up Thu 03 Dec
-    ('Day 08', '2026-12-01', '2026-12-04'), # Tue 01 Dec -> Follow-up Fri 04 Dec
-    ('Day 09', '2026-12-02', '2026-12-07'), # Wed 02 Dec -> Follow-up Mon 07 Dec (skips weekend 05-06)
-    ('Day 10', '2026-12-03', '2026-12-08'), # Thu 03 Dec -> Follow-up Tue 08 Dec
-    ('Day 11', '2026-12-04', '2026-12-09'), # Fri 04 Dec -> Follow-up Wed 09 Dec
-    ('Day 12', '2026-12-07', '2026-12-10'), # Mon 07 Dec -> Follow-up Thu 10 Dec
+    ('Day 01', '2026-11-23', '2026-11-26'), # Mon 23 Nov -> Follow-up Thu 26 Nov
+    ('Day 02', '2026-11-24', '2026-11-27'), # Tue 24 Nov -> Follow-up Fri 27 Nov
+    ('Day 03', '2026-11-25', '2026-11-30'), # Wed 25 Nov -> Follow-up Mon 30 Nov (skips weekend 28-29)
+    ('Day 04', '2026-11-26', '2026-12-01'), # Thu 26 Nov -> Follow-up Tue 01 Dec
+    ('Day 05', '2026-11-27', '2026-12-02'), # Fri 27 Nov -> Follow-up Wed 02 Dec
+    ('Day 06', '2026-11-30', '2026-12-03'), # Mon 30 Nov -> Follow-up Thu 03 Dec (skips weekend 28-29)
+    ('Day 07', '2026-12-01', '2026-12-04'), # Tue 01 Dec -> Follow-up Fri 04 Dec
+    ('Day 08', '2026-12-02', '2026-12-07'), # Wed 02 Dec -> Follow-up Mon 07 Dec (skips weekend 05-06)
+    ('Day 09', '2026-12-03', '2026-12-08'), # Thu 03 Dec -> Follow-up Tue 08 Dec
+    ('Day 10', '2026-12-04', '2026-12-09'), # Fri 04 Dec -> Follow-up Wed 09 Dec
+    ('Day 11', '2026-12-07', '2026-12-10'), # Mon 07 Dec -> Follow-up Thu 10 Dec (skips weekend 05-06)
 ]
 
 # Assign batches to target leads (20 per batch)
