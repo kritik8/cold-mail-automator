@@ -242,7 +242,7 @@ def update_followup_status(email: str, status: str, sent_at: str = "") -> None:
             writer.writeheader()
             writer.writerows(rows)
 
-def connect_smtp(config, max_retries: int = 3, retry_delay: float = 5.0):
+def connect_smtp(config, max_retries: int = 5, initial_delay: float = 5.0):
     for attempt in range(1, max_retries + 1):
         try:
             print(f"\n[LIVE] Connecting to SMTP server {config.smtp_host}:{config.smtp_port} (attempt {attempt}/{max_retries})...")
@@ -258,8 +258,9 @@ def connect_smtp(config, max_retries: int = 3, retry_delay: float = 5.0):
         except Exception as e:
             print(f"  [WARN] SMTP connection failed ({e}).")
             if attempt < max_retries:
-                print(f"  Retrying in {retry_delay}s...")
-                time.sleep(retry_delay)
+                delay = initial_delay * attempt
+                print(f"  Retrying in {delay}s...")
+                time.sleep(delay)
             else:
                 raise e
 
@@ -346,39 +347,51 @@ def dispatch_batch(target_date: str, dry_run: bool = True, max_send: int = 50, m
                 filename=resume_filename
             )
 
-            try:
+            sent_ok = False
+            last_err = None
+            for send_attempt in range(1, 4):
                 try:
+                    if server is None:
+                        server = connect_smtp(config)
                     server.send_message(msg)
+                    sent_ok = True
+                    break
                 except (smtplib.SMTPServerDisconnected, smtplib.SMTPConnectError, smtplib.SMTPException, OSError) as reconn_err:
-                    print(f"  [WARN] SMTP connection interrupted ({reconn_err}). Reconnecting...")
-                    time.sleep(3)
-                    server = connect_smtp(config)
-                    server.send_message(msg)
+                    last_err = reconn_err
+                    print(f"  [WARN] SMTP issue on attempt {send_attempt}/3 ({reconn_err}). Reconnecting...")
+                    try:
+                        if server:
+                            server.quit()
+                    except Exception:
+                        pass
+                    server = None
+                    time.sleep(5 * send_attempt)
 
-                now_str = datetime.now().isoformat()
-                stats["sent"] += 1
-                update_lead_status(recipient_email, status="SENT", sent_at=now_str)
-                record_send_history(
-                    email=recipient_email,
-                    company=lead["Company"],
-                    recipient_name=lead["Recipient Name"],
-                    subject=lead["Custom Subject"],
-                    resume=resume_filename,
-                    sent_at=now_str,
-                    message_id=msg.get("Message-ID", "")
-                )
-                print(f"[{idx}/{len(unprocessed)}] FIRST-TOUCH SENT -> {lead['Company']} ({recipient_email}) | Resume: {resume_filename}")
-
-                if idx < len(unprocessed):
-                    delay = random.uniform(actual_min_delay, actual_max_delay)
-                    print(f"  ... pausing {delay:.1f}s to maintain delivery reputation ...")
-                    time.sleep(delay)
-
-            except Exception as e:
-                err_msg = f"Failed to send to {recipient_email}: {e}"
+            if not sent_ok:
+                err_msg = f"Failed to send to {recipient_email}: {last_err}"
                 print(f"[ERROR] {err_msg}")
                 stats["errors"].append(err_msg)
-                update_lead_status(recipient_email, status=f"FAILED: {e}")
+                update_lead_status(recipient_email, status=f"FAILED: {last_err}")
+                continue
+
+            now_str = datetime.now().isoformat()
+            stats["sent"] += 1
+            update_lead_status(recipient_email, status="SENT", sent_at=now_str)
+            record_send_history(
+                email=recipient_email,
+                company=lead["Company"],
+                recipient_name=lead["Recipient Name"],
+                subject=lead["Custom Subject"],
+                resume=resume_filename,
+                sent_at=now_str,
+                message_id=msg.get("Message-ID", "")
+            )
+            print(f"[{idx}/{len(unprocessed)}] FIRST-TOUCH SENT -> {lead['Company']} ({recipient_email}) | Resume: {resume_filename}")
+
+            if idx < len(unprocessed):
+                delay = random.uniform(actual_min_delay, actual_max_delay)
+                print(f"  ... pausing {delay:.1f}s to maintain delivery reputation ...")
+                time.sleep(delay)
 
     finally:
         if own_server and server:
@@ -463,38 +476,50 @@ def dispatch_followups(due_date: str, dry_run: bool = True, max_send: int = 50, 
                     filename=resume_filename
                 )
 
-            try:
+            sent_ok = False
+            last_err = None
+            for send_attempt in range(1, 4):
                 try:
+                    if server is None:
+                        server = connect_smtp(config)
                     server.send_message(msg)
+                    sent_ok = True
+                    break
                 except (smtplib.SMTPServerDisconnected, smtplib.SMTPConnectError, smtplib.SMTPException, OSError) as reconn_err:
-                    print(f"  [WARN] SMTP connection interrupted ({reconn_err}). Reconnecting...")
-                    time.sleep(3)
-                    server = connect_smtp(config)
-                    server.send_message(msg)
+                    last_err = reconn_err
+                    print(f"  [WARN] SMTP issue on attempt {send_attempt}/3 ({reconn_err}). Reconnecting...")
+                    try:
+                        if server:
+                            server.quit()
+                    except Exception:
+                        pass
+                    server = None
+                    time.sleep(5 * send_attempt)
 
-                now_str = datetime.now().isoformat()
-                stats["sent"] += 1
-                update_followup_status(recipient_email, status="SENT", sent_at=now_str)
-                record_followup_history(
-                    email=recipient_email,
-                    company=lead["Company"],
-                    recipient_name=lead["Recipient Name"],
-                    subject=lead["Follow-up 1 Subject"],
-                    sent_at=now_str,
-                    message_id=msg.get("Message-ID", "")
-                )
-                print(f"[{idx}/{len(followups)}] FOLLOW-UP SENT -> {lead['Company']} ({recipient_email}) | Subject: {lead['Follow-up 1 Subject']}")
-
-                if idx < len(followups):
-                    delay = random.uniform(actual_min_delay, actual_max_delay)
-                    print(f"  ... pausing {delay:.1f}s to maintain delivery reputation ...")
-                    time.sleep(delay)
-
-            except Exception as e:
-                err_msg = f"Failed to send follow-up to {recipient_email}: {e}"
+            if not sent_ok:
+                err_msg = f"Failed to send follow-up to {recipient_email}: {last_err}"
                 print(f"[ERROR] {err_msg}")
                 stats["errors"].append(err_msg)
-                update_followup_status(recipient_email, status=f"FAILED: {e}")
+                update_followup_status(recipient_email, status=f"FAILED: {last_err}")
+                continue
+
+            now_str = datetime.now().isoformat()
+            stats["sent"] += 1
+            update_followup_status(recipient_email, status="SENT", sent_at=now_str)
+            record_followup_history(
+                email=recipient_email,
+                company=lead["Company"],
+                recipient_name=lead["Recipient Name"],
+                subject=lead["Follow-up 1 Subject"],
+                sent_at=now_str,
+                message_id=msg.get("Message-ID", "")
+            )
+            print(f"[{idx}/{len(followups)}] FOLLOW-UP SENT -> {lead['Company']} ({recipient_email}) | Subject: {lead['Follow-up 1 Subject']}")
+
+            if idx < len(followups):
+                delay = random.uniform(actual_min_delay, actual_max_delay)
+                print(f"  ... pausing {delay:.1f}s to maintain delivery reputation ...")
+                time.sleep(delay)
 
     finally:
         if own_server and server:
